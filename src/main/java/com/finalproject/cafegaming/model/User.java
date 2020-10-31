@@ -5,14 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import org.bson.BsonTimestamp;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
-@Document(collection = "User")
+@Document(collection = "users")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,8 +31,8 @@ public class User {
     private String profile;
     private String email;
     @NonNull
-    private Timestamp  created_at;
+    private LocalDateTime created_at;
     @NonNull
-    private Timestamp  modified_at;
+    private LocalDateTime  modified_at;
 
 }

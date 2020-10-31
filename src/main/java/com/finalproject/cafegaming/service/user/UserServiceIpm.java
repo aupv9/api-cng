@@ -29,8 +29,7 @@ public class UserServiceIpm implements UserService{
 
     @Override
     public Boolean insertUser(User user) {
-
-        return null;
+        return userRepository.save(user) instanceof User;
     }
 
     @Override
