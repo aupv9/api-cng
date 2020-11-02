@@ -26,15 +26,15 @@ public class User {
     @JsonIgnore
     private String password;
     private List<String> role;
-    private String firstname;
-    private String lastname;
+    private String firstName;
+    private String lastName;
     private String birthday;
     private String address;
     private String profile;
     private String email;
     @NonNull
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
     @NonNull
-    private LocalDateTime  modified_at;
+    private LocalDateTime  modifiedAt;
 
 }
