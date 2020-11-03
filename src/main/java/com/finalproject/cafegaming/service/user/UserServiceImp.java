@@ -3,16 +3,17 @@ package com.finalproject.cafegaming.service.user;
 import com.finalproject.cafegaming.dao.UserRepository;
 import com.finalproject.cafegaming.exception.ResourceException;
 import com.finalproject.cafegaming.model.User;
+import com.finalproject.cafegaming.payload.RequestLogin;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UserServiceIpm implements UserService{
+public class UserServiceImp implements UserService{
 
     private final UserRepository userRepository;
 
-    public UserServiceIpm(UserRepository userRepository) {
+    public UserServiceImp(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -52,4 +53,16 @@ public class UserServiceIpm implements UserService{
     public Boolean exitUserByUsername(String username) {
         return userRepository.existsUserByUsername(username);
     }
+
+    @Override
+    public User loadUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public Boolean checkLogin(RequestLogin user) {
+        return userRepository.findByUsernameAndPassword(user.getUsername(),user.getPassword()) instanceof User ? true:false;
+    }
+
+
 }
