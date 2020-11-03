@@ -36,5 +36,6 @@ public class User {
     private LocalDateTime createdAt;
     @NonNull
     private LocalDateTime  modifiedAt;
+    private Boolean isActive;
 
 }
