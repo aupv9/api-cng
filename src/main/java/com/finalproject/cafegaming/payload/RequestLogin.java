@@ -13,4 +13,12 @@ public class RequestLogin {
     private String username;
     @NonNull
     private String password;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }
