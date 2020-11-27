@@ -38,6 +38,10 @@ public class User {
     private LocalDateTime  modifiedAt;
     private Boolean isActive;
 
+<<<<<<< Updated upstream
+=======
+    @JsonIgnore
+>>>>>>> Stashed changes
     public List<GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
         for (String role : roles) {
