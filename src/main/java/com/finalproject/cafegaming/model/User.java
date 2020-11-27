@@ -1,6 +1,5 @@
 package com.finalproject.cafegaming.model;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,58 +37,7 @@ public class User {
     private LocalDateTime  modifiedAt;
     private Boolean isActive;
 
-    public String getId() {
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public List<String> getRoles() {
-        return roles;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getProfile() {
-        return profile;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public LocalDateTime getModifiedAt() {
-        return modifiedAt;
-    }
-
-    public Boolean getActive() {
-        return isActive;
-    }
-
+    @JsonIgnore
     public List<GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
         for (String role : roles) {
