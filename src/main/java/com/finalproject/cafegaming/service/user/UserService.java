@@ -1,8 +1,9 @@
 package com.finalproject.cafegaming.service.user;
 
-import com.finalproject.cafegaming.dao.UserRepository;
 import com.finalproject.cafegaming.model.User;
 import com.finalproject.cafegaming.payload.RequestLogin;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -11,9 +12,11 @@ public interface UserService {
     User findUserById(String id);
     Boolean insertUser(User user);
     Boolean updateUser(User user);
-    void delUser(String id);
+    Boolean delUser(String id);
     Boolean exitUserByEmail(String email);
     Boolean exitUserByUsername(String username);
     User loadUserByUsername(String username);
     Boolean checkLogin(RequestLogin user);
+    List<User> findAll(Pageable pageable);
+
 }

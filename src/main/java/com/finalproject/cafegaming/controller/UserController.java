@@ -4,7 +4,10 @@ import com.finalproject.cafegaming.model.User;
 import com.finalproject.cafegaming.payload.RequestLogin;
 import com.finalproject.cafegaming.payload.ResponseLogin;
 import com.finalproject.cafegaming.service.JwtService.JwtService;
+import com.finalproject.cafegaming.service.user.UserService;
 import com.finalproject.cafegaming.service.user.UserServiceImp;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,7 +19,7 @@ import java.util.List;
 @RequestMapping("/api/v1")
 public class UserController {
 
-    private final UserServiceImp userServiceImp;
+    private final UserService userServiceImp;
     private final JwtService jwtService;
     public UserController(UserServiceImp userServiceImp, JwtService jwtService) {
         this.userServiceImp = userServiceImp;
@@ -24,8 +27,10 @@ public class UserController {
     }
 
     @GetMapping(value = "/users", produces = "application/json")
-    public ResponseEntity<?> findAllUser(){
-        List<User> users =  userServiceImp.findAllUser();
+    public ResponseEntity<?> findAllUser(@RequestParam(defaultValue = "0")int page,
+                                         @RequestParam(defaultValue = "10")int size){
+        Pageable pageable = PageRequest.of(page,size);
+        List<User> users =  userServiceImp.findAll(pageable);
         return  users != null ? new ResponseEntity<>(users, HttpStatus.OK):
                 new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
     }
@@ -42,6 +47,21 @@ public class UserController {
                 new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
 
     }
+
+    @PutMapping("/user")
+    public ResponseEntity<?> updateUser(@RequestBody User user){
+        return userServiceImp.updateUser(user) ? new ResponseEntity<>(true,HttpStatus.OK)
+                :new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
+    }
+
+    @DeleteMapping("/user/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable("id")String id){
+        return userServiceImp.delUser(id) ?new ResponseEntity<>(true,HttpStatus.OK)
+                :new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
+    }
+
+
+
     /*
    Method login
    @param User user truyền từ client vào
@@ -68,6 +88,4 @@ public class UserController {
         }
         return new ResponseEntity<ResponseLogin>(result, httpStatus);
     }
-
-
 }

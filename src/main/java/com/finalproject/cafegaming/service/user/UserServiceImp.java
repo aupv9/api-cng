@@ -4,7 +4,10 @@ import com.finalproject.cafegaming.dao.UserRepository;
 import com.finalproject.cafegaming.exception.ResourceException;
 import com.finalproject.cafegaming.model.User;
 import com.finalproject.cafegaming.payload.RequestLogin;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
@@ -35,13 +38,22 @@ public class UserServiceImp implements UserService{
 
     @Override
     public Boolean updateUser(User user) {
-        return null;
+        User user1 =findUserById(user.getId());
+        user1.setFirstName(user.getFirstName());
+        user1.setLastName(user.getLastName());
+        user1.setAddress(user.getAddress());
+        user1.setBirthday(user.getBirthday());
+        user1.setEmail(user.getEmail());
+        user1.setProfile(user.getProfile());
+        user1.setRoles(user.getRoles());
+        return userRepository.save(user1) instanceof User;
     }
 
     @Override
-    public void delUser(String id) {
-        User user1 =userRepository.findById(id).orElseThrow(ResourceException::new);
-        userRepository.deleteById(user1.getId());
+    public Boolean delUser(String id) {
+        User user1 =findUserById(id);
+        user1.setIsActive(false);
+        return userRepository.save(user1) instanceof User;
     }
 
     @Override
@@ -60,8 +72,13 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public Boolean checkLogin(RequestLogin user) {
-        return userRepository.findByUsernameAndPassword(user.getUsername(),user.getPassword()) instanceof User ? true:false;
+    public Boolean checkLogin(@Validated RequestLogin user) {
+        return userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword()) != null;
+    }
+
+    @Override
+    public List<User> findAll(Pageable pageable) {
+        return userRepository.findAll(pageable).getContent();
     }
 
 

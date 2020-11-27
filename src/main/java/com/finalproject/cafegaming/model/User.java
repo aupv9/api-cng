@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,6 +22,7 @@ import java.util.List;
 public class User {
     @Id
     private String id;
+    @Indexed
     private String username;
     @JsonIgnore
     private String password;
@@ -31,13 +32,13 @@ public class User {
     private String birthday;
     private String address;
     private String profile;
+    @Indexed
     private String email;
-    @NonNull
     private LocalDateTime createdAt;
-    @NonNull
     private LocalDateTime  modifiedAt;
     private Boolean isActive;
 
+    @JsonIgnore
     public List<GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
         for (String role : roles) {
