@@ -14,7 +14,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.Arrays;
+<<<<<<< HEAD
 import java.util.Collections;
+=======
+>>>>>>> 438c410c098c8c14434aa22f735c157b734a5336
 
 @Configuration
 @EnableWebSecurity
@@ -44,6 +47,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        http.cors().configurationSource(request -> {
+            CorsConfiguration cors = new CorsConfiguration();
+            cors.setAllowedOrigins(Arrays.asList("*"));
+            cors.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE", "OPTIONS"));
+            cors.setAllowedHeaders(Arrays.asList("*"));
+            return cors;
+
+        });
+
         http.csrf().disable();
         http.authorizeRequests().antMatchers("/api/v1/login").permitAll();
         http.cors().configurationSource(request -> {
@@ -55,7 +68,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         });
         http.antMatcher("/api/v1/**").httpBasic().authenticationEntryPoint(restServicesEntryPoint());
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
        // http.authorizeRequests().antMatchers( "/api/v1/*").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')");
+
+//        http.authorizeRequests().antMatchers( "/api/v1/*").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')");
+
 
         /*
          * add filter thỏa điều kiện rồi mới vào Controller

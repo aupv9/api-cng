@@ -23,6 +23,7 @@ public class UserServiceImp implements UserService{
 
     @Override
     public List<User> findAllUser() {
+        System.out.println("note" + userRepository);
         return userRepository.findAll();
     }
 
