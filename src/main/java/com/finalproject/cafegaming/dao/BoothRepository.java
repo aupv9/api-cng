@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface BoothRepository extends MongoRepository<Booth,String> {
     List<Booth> findAllByDistrict(String s);
-    List<Booth> findAllByZone(String s);
+    List<Booth> findAllByZone(String s,Pageable pageable);
     Page<Booth> findAllByDistrict(String s, Pageable pageable);
     Page<Booth> findAllByTitleContaining(String title,Pageable pageable);
     Page<Booth> findAll(@NotNull Pageable pageable);

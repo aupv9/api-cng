@@ -14,10 +14,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.Arrays;
-<<<<<<< HEAD
 import java.util.Collections;
-=======
->>>>>>> 438c410c098c8c14434aa22f735c157b734a5336
 
 @Configuration
 @EnableWebSecurity

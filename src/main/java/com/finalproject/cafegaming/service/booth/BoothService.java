@@ -1,6 +1,7 @@
 package com.finalproject.cafegaming.service.booth;
 
 import com.finalproject.cafegaming.model.Booth;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 
@@ -12,8 +13,9 @@ public interface BoothService {
     Boolean insert(Booth booth);
     Boolean update(Booth booth);
     List<Booth> findByDistrict(String s);
-    List<Booth> findByZone(String s);
     Boolean delete(String id);
     List<Booth> findAll(Pageable pageable);
     List<Booth> findAllByDistrict(String dis,Pageable pageable);
+    List<Booth> findAllByZone(String dis,Pageable pageable);
+    List<Booth> findAllByTitleContaining(String title, Pageable pageable);
 }

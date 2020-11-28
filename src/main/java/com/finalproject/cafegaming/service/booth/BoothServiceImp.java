@@ -4,7 +4,6 @@ import com.finalproject.cafegaming.dao.BoothRepository;
 import com.finalproject.cafegaming.exception.ResourceException;
 import com.finalproject.cafegaming.model.Booth;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -54,11 +53,6 @@ public class BoothServiceImp implements BoothService{
     }
 
     @Override
-    public List<Booth> findByZone(String s) {
-        return boothRepository.findAllByZone(s);
-    }
-
-    @Override
     public Boolean delete(String id) {
         Booth booth = findById(id);
         booth.setStatus("CLOSE");
@@ -74,5 +68,15 @@ public class BoothServiceImp implements BoothService{
     public List<Booth> findAllByDistrict(String dis, Pageable pageable) {
 
         return boothRepository.findAllByDistrict(dis,pageable).getContent();
+    }
+
+    @Override
+    public List<Booth> findAllByZone(String dis, Pageable pageable) {
+        return boothRepository.findAllByZone(dis,pageable);
+    }
+
+    @Override
+    public List<Booth> findAllByTitleContaining(String title, Pageable pageable) {
+        return boothRepository.findAllByTitleContaining(title,pageable).getContent();
     }
 }
