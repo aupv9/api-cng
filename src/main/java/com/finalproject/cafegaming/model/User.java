@@ -33,8 +33,8 @@ public class User {
     private String profile;
     @Indexed
     private String email;
-    private LocalDateTime createdAt;
-    private LocalDateTime  modifiedAt;
+    private LocalDateTime created_at;
+    private LocalDateTime  modified_at;
     private Boolean isActive;
 
     @JsonIgnore
