@@ -5,20 +5,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("address")
+@Document("province")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Address {
+public class Province {
 
     @Id
     private String id;
-    private String province;
-    private String district;
-    private String street;
-    private String ward;
-    private String number;
-
+    @Indexed
+    private String code;
+    private String name;
+    private String status;
 }
