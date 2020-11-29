@@ -15,7 +15,7 @@ public interface UserService {
     Boolean delUser(String id);
     Boolean exitUserByEmail(String email);
     Boolean exitUserByUsername(String username);
-    User loadUserByUsername(String username);
+    User findByUsername(String username);
     Boolean checkLogin(RequestLogin user);
     List<User> findAll(Pageable pageable);
 

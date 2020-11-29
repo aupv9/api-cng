@@ -29,15 +29,15 @@ public class User {
     private List<String> roles;
     private String firstName;
     private String lastName;
-    private String birthday;
+    private LocalDateTime birthday;
     private String address;
     private String profile;
     @Indexed
     private String email;
-    @Field(name = "create_at")
+    @Field(name = "createdAt")
     private LocalDateTime createdAt;
-    @Field(name = "modified_at")
-    private LocalDateTime  modifiedAt;
+    @Field(name = "updateAt")
+    private LocalDateTime  updateAt;
     private LocalDateTime created_at;
     private LocalDateTime  modified_at;
     private Boolean isActive;

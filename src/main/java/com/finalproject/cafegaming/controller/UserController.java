@@ -76,7 +76,7 @@ public class UserController {
         try {
             if (userServiceImp.checkLogin(user)) {
                 result.setToken(jwtService.generateTokenLogin(user.getUsername()));
-                List<String> roles = userServiceImp.loadUserByUsername(user.getUsername()).getRoles();
+                List<String> roles = userServiceImp.findByUsername(user.getUsername()).getRoles();
                 result.setRoles(roles);
                 httpStatus = HttpStatus.OK;
             } else {

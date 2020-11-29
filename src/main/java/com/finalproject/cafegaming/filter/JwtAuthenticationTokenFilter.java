@@ -40,7 +40,7 @@ public class JwtAuthenticationTokenFilter extends UsernamePasswordAuthentication
         if (jwtService.validateTokenLogin(authToken)) {
             String username = jwtService.getUsernameFromToken(authToken);
 
-            com.finalproject.cafegaming.model.User user = userServiceImp.loadUserByUsername(username);
+            com.finalproject.cafegaming.model.User user = userServiceImp.findByUsername(username);
             if (user != null) {
                 boolean enabled = true;
                 boolean accountNonExpired = true;

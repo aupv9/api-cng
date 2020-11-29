@@ -19,56 +19,56 @@ import java.util.List;
 public class DistrictController {
 
 
-    final DistrictService districtService;
-
-    public DistrictController(DistrictService districtService) {
-        this.districtService = districtService;
-    }
-
-    @GetMapping(value = "/districts",produces = "application/json")
-    public ResponseEntity<List<District>> getDistricts(@RequestParam(defaultValue = "0") int page,
-                                                              @RequestParam(defaultValue = "10")int size
-    ){
-        List<District> districts = null;
-        Pageable paging = PageRequest.of(page, size);
-
-        districts = districtService.findAll(paging);
-
-        return  districts != null ? new ResponseEntity<>(districts, HttpStatus.OK):
-                new ResponseEntity<>(new ArrayList<>(),HttpStatus.NOT_FOUND);
-    }
-
-    @GetMapping(value = "/district-location",produces = "application/json")
-    public ResponseEntity<List<District>> getDistrictsByLocation(@RequestParam(defaultValue = "0") int page,
-                                                                 @RequestParam(defaultValue = "10")int size,
-                                                                 @RequestParam String location){
-        List<District> districts = null;
-        Pageable paging = PageRequest.of(page, size);
-
-        districts = districtService.findAllByLocation(location,paging);
-
-        return  districts != null ? new ResponseEntity<>(districts, HttpStatus.OK):
-                new ResponseEntity<>(new ArrayList<>(),HttpStatus.NOT_FOUND);
-    }
-
-
-
-    @PostMapping(value = "/district",produces = "application/json")
-    public ResponseEntity<?> saveDistrict(@RequestBody @Validated District district){
-        return  districtService.save(district) != null ? new ResponseEntity<>(true, HttpStatus.CREATED):
-                new ResponseEntity<>(false,HttpStatus.NOT_FOUND);
-    }
-
-    @PutMapping("/district")
-    public ResponseEntity<?> update(@RequestBody @Validated District district){
-        return  districtService.update(district) != null ? new ResponseEntity<>(true, HttpStatus.CREATED):
-                new ResponseEntity<>(false,HttpStatus.NOT_FOUND);
-    }
-
-    @DeleteMapping("/district")
-    public ResponseEntity<?> delete(@RequestParam String id){
-        return  districtService.delete(id) != null ? new ResponseEntity<>(true, HttpStatus.CREATED):
-                new ResponseEntity<>(false,HttpStatus.NOT_FOUND);
-    }
+//    final DistrictService districtService;
+//
+//    public DistrictController(DistrictService districtService) {
+//        this.districtService = districtService;
+//    }
+//
+//    @GetMapping(value = "/districts",produces = "application/json")
+//    public ResponseEntity<List<District>> getDistricts(@RequestParam(defaultValue = "0") int page,
+//                                                              @RequestParam(defaultValue = "10")int size
+//    ){
+//        List<District> districts = null;
+//        Pageable paging = PageRequest.of(page, size);
+//
+//        districts = districtService.findAll(paging);
+//
+//        return  districts != null ? new ResponseEntity<>(districts, HttpStatus.OK):
+//                new ResponseEntity<>(new ArrayList<>(),HttpStatus.NOT_FOUND);
+//    }
+//
+//    @GetMapping(value = "/district-location",produces = "application/json")
+//    public ResponseEntity<List<District>> getDistrictsByLocation(@RequestParam(defaultValue = "0") int page,
+//                                                                 @RequestParam(defaultValue = "10")int size,
+//                                                                 @RequestParam String location){
+//        List<District> districts = null;
+//        Pageable paging = PageRequest.of(page, size);
+//
+//        districts = districtService.findAllByLocation(location,paging);
+//
+//        return  districts != null ? new ResponseEntity<>(districts, HttpStatus.OK):
+//                new ResponseEntity<>(new ArrayList<>(),HttpStatus.NOT_FOUND);
+//    }
+//
+//
+//
+//    @PostMapping(value = "/district",produces = "application/json")
+//    public ResponseEntity<?> saveDistrict(@RequestBody @Validated District district){
+//        return  districtService.save(district) != null ? new ResponseEntity<>(true, HttpStatus.CREATED):
+//                new ResponseEntity<>(false,HttpStatus.NOT_FOUND);
+//    }
+//
+//    @PutMapping("/district")
+//    public ResponseEntity<?> update(@RequestBody @Validated District district){
+//        return  districtService.update(district) != null ? new ResponseEntity<>(true, HttpStatus.CREATED):
+//                new ResponseEntity<>(false,HttpStatus.NOT_FOUND);
+//    }
+//
+//    @DeleteMapping("/district")
+//    public ResponseEntity<?> delete(@RequestParam String id){
+//        return  districtService.delete(id) != null ? new ResponseEntity<>(true, HttpStatus.CREATED):
+//                new ResponseEntity<>(false,HttpStatus.NOT_FOUND);
+//    }
 
 }

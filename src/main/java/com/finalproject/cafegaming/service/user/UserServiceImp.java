@@ -4,20 +4,22 @@ import com.finalproject.cafegaming.dao.UserRepository;
 import com.finalproject.cafegaming.exception.ResourceException;
 import com.finalproject.cafegaming.model.User;
 import com.finalproject.cafegaming.payload.RequestLogin;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 public class UserServiceImp implements UserService{
 
     private final UserRepository userRepository;
-
-    public UserServiceImp(UserRepository userRepository) {
+    final PasswordEncoder passwordEncoder;
+    public UserServiceImp(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -34,6 +36,7 @@ public class UserServiceImp implements UserService{
 
     @Override
     public Boolean insertUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user) instanceof User;
     }
 
@@ -42,11 +45,13 @@ public class UserServiceImp implements UserService{
         User user1 =findUserById(user.getId());
         user1.setFirstName(user.getFirstName());
         user1.setLastName(user.getLastName());
+        user1.setPassword(passwordEncoder.encode(user.getPassword()));
         user1.setAddress(user.getAddress());
         user1.setBirthday(user.getBirthday());
         user1.setEmail(user.getEmail());
         user1.setProfile(user.getProfile());
         user1.setRoles(user.getRoles());
+        user1.setUpdateAt(LocalDateTime.now());
         return userRepository.save(user1) instanceof User;
     }
 
@@ -54,6 +59,7 @@ public class UserServiceImp implements UserService{
     public Boolean delUser(String id) {
         User user1 =findUserById(id);
         user1.setIsActive(false);
+        user1.setUpdateAt(LocalDateTime.now());
         return userRepository.save(user1) instanceof User;
     }
 
@@ -68,13 +74,19 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public User loadUserByUsername(String username) {
+    public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
     @Override
     public Boolean checkLogin(@Validated RequestLogin user) {
-        return userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword()) != null;
+        User user1 = findUserById(user.getUsername());
+        if(user1 != null){
+            if (passwordEncoder.matches(user.getPassword(),user1.getPassword())){
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
