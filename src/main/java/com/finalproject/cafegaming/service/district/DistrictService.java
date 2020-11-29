@@ -8,7 +8,7 @@ import java.util.List;
 public interface DistrictService {
 
     List<District> findAll(Pageable pageable);
-    List<District> findAllByLocation(String id);
+    List<District> findAllByLocation(String id,Pageable pageable);
     Boolean save(District district);
     Boolean update(District district);
     Boolean delete(String id);

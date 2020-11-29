@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -33,7 +34,9 @@ public class User {
     private String profile;
     @Indexed
     private String email;
+    @Field(name = "create_at")
     private LocalDateTime createdAt;
+    @Field(name = "modified_at")
     private LocalDateTime  modifiedAt;
     private Boolean isActive;
 

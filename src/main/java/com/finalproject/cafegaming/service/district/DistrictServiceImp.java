@@ -6,6 +6,7 @@ import com.finalproject.cafegaming.model.District;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -16,7 +17,6 @@ public class DistrictServiceImp implements DistrictService{
 
     public DistrictServiceImp(DistrictRepository districtRepository) {
         this.districtRepository = districtRepository;
-
     }
 
     @Override
@@ -25,23 +25,21 @@ public class DistrictServiceImp implements DistrictService{
     }
 
     @Override
-    public List<District> findAllByLocation(String id) {
-        return districtRepository.findAllByIdLocation(id).getContent();
+    public List<District> findAllByLocation(String id,Pageable pageable) {
+        return districtRepository.findAllByIdLocation(id,pageable).getContent();
     }
 
     @Override
     public Boolean save(District district) {
-        districtRepository.save(district);
-        return true;
+        return districtRepository.save(district) instanceof District;
     }
 
     @Override
     public Boolean update(District district) {
-
-        District district1 = findById(district.getId());
+        District district1 =findById(district.getId());
         district1.setCode(district.getCode());
-        district1.setIdLocation(district.getIdLocation());
         district1.setName(district.getName());
+        district1.setIdLocation(district.getIdLocation());
         district1.setStatus(district.getStatus());
         district1.setUpdateAt(district.getUpdateAt());
         return save(district1);
@@ -49,13 +47,16 @@ public class DistrictServiceImp implements DistrictService{
 
     @Override
     public Boolean delete(String id) {
-        District district1 = findById(id);
-        district1.setStatus("CLOSE");
-        return save(district1);
+        District district = findById(id);
+        district.setStatus("Not Active");
+        district.setUpdateAt(LocalDateTime.now());
+        return save(district);
     }
 
     @Override
     public District findById(String s) {
         return districtRepository.findById(s).orElseThrow(ResourceException::new);
     }
+
+
 }
