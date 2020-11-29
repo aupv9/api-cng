@@ -10,7 +10,7 @@ import java.util.List;
 //@EnableMongoRepositories
 public interface DistrictRepository extends MongoRepository<District,String> {
 
-//    List<District> findAll(Pageable pageable);
+    Page<District> findAll(Pageable pageable);
     List<District> findAllByIdLocation(String id);
 
 }
