@@ -42,7 +42,7 @@ public class UserController {
             return new ResponseEntity<>("Username is already",HttpStatus.BAD_REQUEST);
         }
         if(userServiceImp.exitUserByEmail(user.getEmail())){
-            return new ResponseEntity<>("Email is adlready",HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Email is already",HttpStatus.BAD_REQUEST);
         }
         return  userServiceImp.insertUser(user) ? new ResponseEntity<>(true, HttpStatus.OK) :
                 new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);

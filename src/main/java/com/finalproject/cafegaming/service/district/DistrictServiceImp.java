@@ -26,7 +26,7 @@ public class DistrictServiceImp implements DistrictService{
 
     @Override
     public List<District> findAllByLocation(String id) {
-        return districtRepository.findAllByIdLocation(id).getContent();
+        return districtRepository.findAllByIdLocation(id);
     }
 
     @Override

@@ -5,9 +5,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import java.util.List;
+
+//@EnableMongoRepositories
 public interface DistrictRepository extends MongoRepository<District,String> {
 
-    Page<District> findAll(Pageable pageable);
-    Page<District> findAllByIdLocation(String id);
+//    List<District> findAll(Pageable pageable);
+    List<District> findAllByIdLocation(String id);
 
 }
