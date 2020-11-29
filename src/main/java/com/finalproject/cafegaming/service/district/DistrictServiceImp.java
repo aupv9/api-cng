@@ -26,7 +26,7 @@ public class DistrictServiceImp implements DistrictService{
 
     @Override
     public List<District> findAllByLocation(String id,Pageable pageable) {
-        return districtRepository.findAllByIdLocation(id,pageable).getContent();
+        return districtRepository.findAllByIdLocation(id, pageable).getContent();
     }
 
     @Override

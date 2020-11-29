@@ -38,6 +38,8 @@ public class User {
     private LocalDateTime createdAt;
     @Field(name = "modified_at")
     private LocalDateTime  modifiedAt;
+    private LocalDateTime created_at;
+    private LocalDateTime  modified_at;
     private Boolean isActive;
 
     @JsonIgnore
