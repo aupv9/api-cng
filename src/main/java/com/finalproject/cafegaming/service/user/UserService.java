@@ -17,6 +17,6 @@ public interface UserService {
     Boolean exitUserByUsername(String username);
     User findByUsername(String username);
     Boolean checkLogin(RequestLogin user);
-    List<User> findAll(Pageable pageable);
+    List<User> findAllByRole(Pageable pageable,String role);
 
 }

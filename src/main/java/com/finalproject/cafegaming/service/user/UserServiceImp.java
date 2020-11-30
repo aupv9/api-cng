@@ -1,6 +1,7 @@
 package com.finalproject.cafegaming.service.user;
 
 import com.finalproject.cafegaming.dao.UserRepository;
+import com.finalproject.cafegaming.enums.Role;
 import com.finalproject.cafegaming.exception.ResourceException;
 import com.finalproject.cafegaming.model.User;
 import com.finalproject.cafegaming.payload.RequestLogin;
@@ -102,8 +103,20 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public List<User> findAll(Pageable pageable) {
-        return userRepository.findAll(pageable).getContent();
+    public List<User> findAllByRole(Pageable pageable,String role) {
+        StringBuilder roleQuery = new StringBuilder();
+        switch (role){
+            case "admin":
+                roleQuery.append("ROLE_ADMIN");
+                break;
+            case  "partner":
+                roleQuery.append("ROLE_PARTNER");
+                break;
+            default:
+                roleQuery.append("ROLE_MEMBER");
+                break;
+        }
+        return userRepository.findAllByRolesContaining(pageable,roleQuery.toString()).getContent();
     }
 
 

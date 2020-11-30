@@ -28,9 +28,10 @@ public class UserController {
 
     @GetMapping(value = "/users", produces = "application/json")
     public ResponseEntity<?> findAllUser(@RequestParam(defaultValue = "0")int page,
-                                         @RequestParam(defaultValue = "10")int size){
+                                         @RequestParam(defaultValue = "10")int size,
+                                         @RequestParam(defaultValue = "member") String role){
         Pageable pageable = PageRequest.of(page,size);
-        List<User> users =  userServiceImp.findAll(pageable);
+        List<User> users =  userServiceImp.findAllByRole(pageable,role);
         return  users != null ? new ResponseEntity<>(users, HttpStatus.OK):
                 new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
     }
