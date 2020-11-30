@@ -2,7 +2,6 @@ package com.finalproject.cafegaming.controller;
 
 
 import com.finalproject.cafegaming.model.District;
-import com.finalproject.cafegaming.model.Province;
 import com.finalproject.cafegaming.service.district.DistrictService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
