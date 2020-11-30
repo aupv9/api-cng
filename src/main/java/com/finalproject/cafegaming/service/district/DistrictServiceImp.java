@@ -18,8 +18,6 @@ public class DistrictServiceImp implements DistrictService{
         this.districtRepository = districtRepository;
     }
 
-
-
     @Override
     public List<District> findAll(Pageable pageable) {
         return districtRepository.findAll(pageable).getContent();
@@ -32,7 +30,8 @@ public class DistrictServiceImp implements DistrictService{
 
     @Override
     public Boolean save(District district) {
-
+        district.setCreateAt(LocalDateTime.now());
+        district.setUpdateAt(LocalDateTime.now());
         return districtRepository.save(district) instanceof District;
     }
 
@@ -44,7 +43,7 @@ public class DistrictServiceImp implements DistrictService{
         district1.setIdLocation(district.getIdLocation());
         district1.setStatus(district.getStatus());
         district1.setUpdateAt(district.getUpdateAt());
-        return save(district1);
+        return districtRepository.save(district) instanceof District;
     }
 
     @Override

@@ -18,6 +18,7 @@ public class District {
 
     @Id
     private String id;
+    @Indexed
     private String code;
     private String name;
     private String province;
