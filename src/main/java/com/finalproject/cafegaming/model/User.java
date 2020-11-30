@@ -1,6 +1,7 @@
 package com.finalproject.cafegaming.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mongodb.lang.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,11 +36,11 @@ public class User {
     @Indexed
     private String email;
     @Field(name = "createdAt")
+    @Nullable
     private LocalDateTime createdAt;
     @Field(name = "updateAt")
+    @Nullable
     private LocalDateTime  updateAt;
-    private LocalDateTime created_at;
-    private LocalDateTime  modified_at;
     private Boolean isActive;
 
     @JsonIgnore

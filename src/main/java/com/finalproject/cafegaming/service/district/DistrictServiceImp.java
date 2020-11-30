@@ -32,6 +32,7 @@ public class DistrictServiceImp implements DistrictService{
 
     @Override
     public Boolean save(District district) {
+
         return districtRepository.save(district) instanceof District;
     }
 

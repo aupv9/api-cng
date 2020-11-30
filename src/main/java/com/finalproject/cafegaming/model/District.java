@@ -1,5 +1,6 @@
 package com.finalproject.cafegaming.model;
 
+import com.mongodb.lang.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,8 @@ public class District {
     private String province;
     private String idLocation;
     private String status;
+    @Nullable
     private LocalDateTime createAt;
+    @Nullable
     private LocalDateTime updateAt;
 }
