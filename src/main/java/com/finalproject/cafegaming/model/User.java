@@ -21,7 +21,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties(allowGetters = true,allowSetters = true,value = {"password"})
+@JsonIgnoreProperties(allowSetters = true,value = {"password"})
 public class User {
     @Id
     private String id;
