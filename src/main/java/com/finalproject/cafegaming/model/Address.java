@@ -18,7 +18,7 @@ public class Address {
     @Id
     private String id;
     private String province;
-    private String disctrict;
+    private String district;
     private String street;
     private String ward;
     private String number;
