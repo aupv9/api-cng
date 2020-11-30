@@ -68,7 +68,7 @@ public class UserController {
    return Response
    * */
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<ResponseLogin> login(@RequestBody RequestLogin user) {
+    public ResponseEntity<ResponseLogin> login(@RequestBody @Validated RequestLogin user) {
 
         ResponseLogin result = new ResponseLogin();
         HttpStatus httpStatus = null;

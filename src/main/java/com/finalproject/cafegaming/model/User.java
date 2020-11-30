@@ -1,6 +1,7 @@
 package com.finalproject.cafegaming.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.mongodb.lang.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,17 +17,18 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Document(collection = "users")
+@Document(collection = "user")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(allowGetters = true,allowSetters = true,value = {"password"})
 public class User {
     @Id
     private String id;
     @Indexed
     private String username;
-    @JsonIgnore
     private String password;
+    @Nullable
     private List<String> roles;
     private String firstName;
     private String lastName;

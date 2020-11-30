@@ -7,9 +7,12 @@ import com.finalproject.cafegaming.payload.RequestLogin;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionUsageException;
 import org.springframework.validation.annotation.Validated;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -36,6 +39,15 @@ public class UserServiceImp implements UserService{
 
     @Override
     public Boolean insertUser(User user) {
+        assert user.getRoles() != null;
+        user.getRoles().forEach(s -> {
+            if (!s.startsWith("ROLE_")){
+                user.setRoles(Collections.singletonList(("ROLE_"+s).toUpperCase()));
+//                List<String> chars= Arrays.asList(s.split("_"));
+//                user.setRoles(Collections.singletonList("ROLE_" + chars.get(1)));
+            }
+        });
+        System.out.println(user.getPassword());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user) instanceof User;
     }
