@@ -68,7 +68,7 @@ public class UserController {
    @param User user truyền từ client vào
    return Response
    * */
-    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/authenticate", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<ResponseLogin> login(@RequestBody @Validated RequestLogin user) {
 
         ResponseLogin result = new ResponseLogin();
@@ -80,7 +80,7 @@ public class UserController {
                 result.setRoles(roles);
                 httpStatus = HttpStatus.OK;
             } else {
-                result.setToken("Wrong userId and password");
+                result.setToken("Wrong userId or password");
                 httpStatus = HttpStatus.BAD_REQUEST;
             }
         } catch (Exception ex) {
