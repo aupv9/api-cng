@@ -26,7 +26,7 @@ public class AddressController {
     }
 
 
-    @GetMapping(value = "/addresss",produces = "application/json")
+    @GetMapping(value = "/addresses",produces = "application/json")
     public ResponseEntity<List<Address>> getAddresss(@RequestParam(defaultValue = "0") int page,
                                                       @RequestParam(defaultValue = "10")int size
     ){
