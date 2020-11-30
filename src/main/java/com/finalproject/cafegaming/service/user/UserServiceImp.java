@@ -93,7 +93,7 @@ public class UserServiceImp implements UserService{
 
     @Override
     public Boolean checkLogin(@Validated RequestLogin user) {
-        User user1 = findUserById(user.getUsername());
+        User user1 = findByUsername(user.getUsername());
         if(user1 != null){
             if (passwordEncoder.matches(user.getPassword(),user1.getPassword())){
                 return true;
