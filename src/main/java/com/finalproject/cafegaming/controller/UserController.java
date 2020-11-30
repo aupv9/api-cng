@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -44,6 +45,9 @@ public class UserController {
         if(userServiceImp.exitUserByEmail(user.getEmail())){
             return new ResponseEntity<>("Email is already",HttpStatus.BAD_REQUEST);
         }
+
+        user.setCreatedAt(LocalDateTime.now());
+
         return  userServiceImp.insertUser(user) ? new ResponseEntity<>(true, HttpStatus.OK) :
                 new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
 

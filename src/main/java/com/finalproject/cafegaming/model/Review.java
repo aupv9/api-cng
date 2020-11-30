@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
+
 @Document("review")
 @Data
 @AllArgsConstructor
@@ -16,7 +18,8 @@ public class Review {
     @Id
     private String id;
     private String content;
-    private String createAt;
+    private Integer rate;
+    private LocalDateTime createdAt;
+    private String createdBy;
     private String status;
-
 }
