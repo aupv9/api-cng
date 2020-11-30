@@ -35,7 +35,7 @@ public class AddressServiceImp implements AddressService{
     public Boolean update(Address address) {
         Address address1 = findById(address.getId());
         address1.setProvince(address.getProvince());
-        address1.setDisctrict(address.getDisctrict());
+        address1.setDistrict(address.getDistrict());
         address1.setStreet(address.getStreet());
         address1.setWard(address.getWard());
         address1.setNumber(address.getNumber());
