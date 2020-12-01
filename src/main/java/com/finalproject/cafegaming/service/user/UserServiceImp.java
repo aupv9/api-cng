@@ -109,7 +109,7 @@ public class UserServiceImp implements UserService{
             case "admin":
                 roleQuery.append("ROLE_ADMIN");
                 break;
-            case  "partner":
+            case "partner":
                 roleQuery.append("ROLE_PARTNER");
                 break;
             default:

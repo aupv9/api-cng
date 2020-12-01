@@ -36,6 +36,14 @@ public class UserController {
                 new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping(value = "/user/{id}", produces = "application/json")
+    public ResponseEntity<?> findAllUser(@PathVariable("id")String id){
+        User user = userServiceImp.findUserById(id);
+        return  user != null ? new ResponseEntity<>(user, HttpStatus.OK):
+                new ResponseEntity<>(new User(),HttpStatus.NOT_FOUND);
+    }
+
+
     @PostMapping(value = "/user")
     public ResponseEntity<?> insertUser(@RequestBody @Validated User user){
         if(userServiceImp.exitUserByUsername(user.getUsername())){
