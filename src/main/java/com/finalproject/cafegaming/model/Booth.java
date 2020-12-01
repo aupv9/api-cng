@@ -11,19 +11,18 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Document("booth")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Document("booth")
 public class Booth {
 
     @Id
     private String id;
     private String title;
     private String type;
-
     @Field(name = "mainmenu")
-    private String mainMenu;
+    private String mainmenu;
 
     private String createdBy;
     private List<String> category;
@@ -37,10 +36,10 @@ public class Booth {
     private String businessphone;
 
     @Field(name = "opentime")
-    private String openTime;
+    private String opentime;
 
     @Field(name = "closetime")
-    private String closeTime;
+    private String closetime;
 
     private String description;
     private String address;
