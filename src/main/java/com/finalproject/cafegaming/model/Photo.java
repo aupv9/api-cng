@@ -12,6 +12,7 @@ public class Photo {
     @Id
     private String id;
     private String url;
-    private String createdAt;
+    private String title;
+    private String updateAt;
     private String status;
 }

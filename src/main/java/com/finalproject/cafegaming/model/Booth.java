@@ -17,18 +17,16 @@ public class Booth {
     @Id
     private String id;
     private String title;
-    private Photo picUrl;
-    private String openTime;
-    private String closeTime;
+    private String open_time;
+    private String close_time;
     private String description;
     private String address;
+    private String createAt;
+    private String updateAt;
+    private List<String> zone;
+    private List<String> district;
+    private List<String> owner;
     private String status;
-    private List<Review> reviews;
-    private List<Photo> photos;
-    private Integer[] priceRange;
-    private String shortUrl;
-    private String phone;
-    private String createdBy;
-    private String createdAt;
-    private String updatedAt;
+    private List<String> review;
+    private Integer rating;
 }
