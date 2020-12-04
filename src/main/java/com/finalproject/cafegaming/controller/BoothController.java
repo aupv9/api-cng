@@ -27,14 +27,28 @@ public class BoothController {
     @GetMapping(value = "/booth-province")
     public ResponseEntity<List<Booth>> getBoothsByProvin(@RequestParam(defaultValue = "0") int page,
                                                            @RequestParam(defaultValue = "10")int size,
-                                                           @RequestParam(required = false) String province
+                                                           @RequestParam String province
                                                            ){
         Pageable paging = PageRequest.of(page, size);
         List<Booth> booths = boothService.findAllByProvince(province,paging);
 
-        return  booths != null ? new ResponseEntity<>(booths, HttpStatus.OK):
+        return  booths != null && !booths.isEmpty()? new ResponseEntity<>(booths, HttpStatus.OK):
                 new ResponseEntity<>(new ArrayList<>(),HttpStatus.NOT_FOUND);
     }
+
+    @GetMapping(value = "/booth-district")
+    public ResponseEntity<List<Booth>> getBoothsByDistrict(@RequestParam(defaultValue = "0") int page,
+                                                         @RequestParam(defaultValue = "10")int size,
+                                                         @RequestParam String province,
+                                                         @RequestParam String district){
+        Pageable pageable = PageRequest.of(page, size);
+        List<Booth> booths = boothService.findAllByDistrict(province,district,pageable);
+
+        return booths != null && !booths.isEmpty()? new ResponseEntity<>(booths, HttpStatus.OK):
+                new ResponseEntity<>(new ArrayList<>(),HttpStatus.NOT_FOUND);
+    }
+
+
 
     @GetMapping(value = "/booths",produces = "application/json")
     public ResponseEntity<List<Booth>> getBoothsByDistrict(@RequestParam(defaultValue = "0") int page,
@@ -44,7 +58,7 @@ public class BoothController {
         Pageable paging = PageRequest.of(page, size);
         List<Booth> booths = boothService.findAll(paging);
 
-        return  booths != null ? new ResponseEntity<>(booths, HttpStatus.OK):
+        return  booths != null && !booths.isEmpty()? new ResponseEntity<>(booths, HttpStatus.OK):
                 new ResponseEntity<>(new ArrayList<>(),HttpStatus.NOT_FOUND);
     }
 
@@ -52,17 +66,9 @@ public class BoothController {
     @GetMapping(value = "/booth/{id}",produces = "application/json")
     public ResponseEntity<Booth> getBooth(@PathVariable("id")String id){
         Booth booth =  boothService.findById(id);
-        return  booth != null ? new ResponseEntity<>(booth, HttpStatus.OK):
+        return  booth != null  ? new ResponseEntity<>(booth, HttpStatus.OK):
                 new ResponseEntity<>(new Booth(),HttpStatus.NOT_FOUND);
     }
-
-//    @GetMapping(value = "/booths/{district}",produces = "application/json")
-//    public ResponseEntity<List<Booth>> getBoothByDistrict(@PathVariable("district")String dictrict){
-//        List<Booth> booths =  boothService.findByDistrict(dictrict);
-//        return  booths != null ? new ResponseEntity<>(booths, HttpStatus.OK):
-//                new ResponseEntity<>(new ArrayList<>(),HttpStatus.NOT_FOUND);
-//    }
-
 
 
     @PostMapping(value = "/booth",produces = "application/json")

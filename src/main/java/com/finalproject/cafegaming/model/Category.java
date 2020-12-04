@@ -23,4 +23,6 @@ public class Category {
     private LocalDateTime createdAt;
     @Nullable
     private LocalDateTime updatedAt;
+    private String status;
+
 }

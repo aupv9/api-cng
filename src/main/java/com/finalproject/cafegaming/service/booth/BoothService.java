@@ -10,7 +10,7 @@ public interface BoothService {
     Booth findById(String id);
     Boolean insert(Booth booth);
     Boolean update(Booth booth);
-    List<Booth> findAllByDistrict(String dis, Pageable pageable);
+    List<Booth> findAllByDistrict(String province,String dis, Pageable pageable);
     List<Booth> findAllByProvince(String province,Pageable pageable);
     Boolean delete(String id);
     List<Booth> findAll(Pageable pageable);

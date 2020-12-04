@@ -82,10 +82,15 @@ public class BoothServiceImp implements BoothService{
     }
 
     @Override
-    public List<Booth> findAllByDistrict(String dis, Pageable pageable) {
-
-
-        return null;
+    public List<Booth> findAllByDistrict(String province,String dis, Pageable pageable) {
+        List<Booth> booths=new ArrayList<>();
+        boothRepository.findAll(pageable).getContent().forEach(booth -> {
+            Address address = addressService.findById(booth.getAddress());
+            if(address.getProvince().equals(province) && address.getDistrict().equals(dis)){
+                booths.add(booth);
+            }
+        });
+        return booths;
     }
 
     @Override
