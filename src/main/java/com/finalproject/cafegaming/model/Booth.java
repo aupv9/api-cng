@@ -1,53 +1,68 @@
 package com.finalproject.cafegaming.model;
 
-import com.mongodb.lang.Nullable;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicReference;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Document("booth")
-public class Booth {
+@JsonIgnoreProperties(value = {"code","name"})
+public class Booth extends BaseModel{
 
-    @Id
-    private String id;
     private String title;
     private String type;
-    @Field(name = "mainmenu")
-    private String mainmenu;
+    private String mainMenu;
 
-    private String createdBy;
-    private List<String> category;
-    private List<String> promotion;
-    private List<String> genre;
-    private List<String> foods;
-    private List<String> service;
-    private List<String> photo;
-    private List<String> review;
+    @DBRef
+    private Set<Category> category;
 
-    private String businessphone;
+    @DBRef
+    private Set<Promotion> promotion;
 
-    @Field(name = "opentime")
-    private String opentime;
+    @DBRef
+    private Set<Genre> genre;
 
-    @Field(name = "closetime")
-    private String closetime;
+    @DBRef
+    private Set<Food> foods;
 
+    @DBRef
+    private List<Service> service;
+
+    @DBRef
+    private Set<Photo> photo;
+
+    @DBRef
+    private Province province;
+
+    @DBRef
+    private District district;
+
+    @DBRef
+    private List<Comment> comment;
+
+    private String businessPhone;
+    private String openTime;
+    private String closeTime;
     private String description;
     private String address;
-    @Nullable
-    private LocalDateTime createAt;
-    @Nullable
-    private LocalDateTime updateAt;
-    private List<String> owner;
-    private String status;
-    private Float rating;
+
+    public Double getPointFromComment(){
+        AtomicReference<Double> pointRef = new AtomicReference<>(0.d);
+        this.comment.forEach(comment1 -> {
+            pointRef.updateAndGet(v -> v + comment1.getPoint());
+        });
+        Double point = (pointRef.get() / this.comment.size());
+        return point;
+    }
 }

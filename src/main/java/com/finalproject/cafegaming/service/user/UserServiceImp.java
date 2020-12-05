@@ -1,18 +1,15 @@
 package com.finalproject.cafegaming.service.user;
 
 import com.finalproject.cafegaming.dao.UserRepository;
-import com.finalproject.cafegaming.enums.Role;
 import com.finalproject.cafegaming.exception.ResourceException;
 import com.finalproject.cafegaming.model.User;
 import com.finalproject.cafegaming.payload.RequestLogin;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.TransactionUsageException;
 import org.springframework.validation.annotation.Validated;
 
-import java.time.LocalDateTime;
-import java.util.Arrays;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -29,7 +26,6 @@ public class UserServiceImp implements UserService{
 
     @Override
     public List<User> findAllUser() {
-        System.out.println("note" + userRepository);
         return userRepository.findAll();
     }
 
@@ -59,12 +55,10 @@ public class UserServiceImp implements UserService{
         user1.setFirstName(user.getFirstName());
         user1.setLastName(user.getLastName());
         user1.setPassword(passwordEncoder.encode(user.getPassword()));
-        user1.setAddress(user.getAddress());
         user1.setBirthday(user.getBirthday());
         user1.setEmail(user.getEmail());
-        user1.setProfile(user.getProfile());
+        user1.setImage(user.getImage());
         user1.setRoles(user.getRoles());
-        user1.setUpdateAt(LocalDateTime.now());
         return userRepository.save(user1) instanceof User;
     }
 
@@ -72,7 +66,6 @@ public class UserServiceImp implements UserService{
     public Boolean delUser(String id) {
         User user1 =findUserById(id);
         user1.setIsActive(false);
-        user1.setUpdateAt(LocalDateTime.now());
         return userRepository.save(user1) instanceof User;
     }
 

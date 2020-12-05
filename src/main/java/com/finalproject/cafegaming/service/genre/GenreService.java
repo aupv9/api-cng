@@ -1,6 +1,5 @@
 package com.finalproject.cafegaming.service.genre;
 
-import com.finalproject.cafegaming.model.District;
 import com.finalproject.cafegaming.model.Genre;
 import org.springframework.data.domain.Pageable;
 

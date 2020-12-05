@@ -28,9 +28,6 @@ public class GenreServiceImp implements GenreService{
     @Override
     public Boolean save(Genre genre) {
 
-        genre.setCreatedAt(LocalDateTime.now());
-        genre.setUpdatedAt(LocalDateTime.now());
-
         return genreRepository.save(genre) instanceof Genre;
     }
 
@@ -40,7 +37,6 @@ public class GenreServiceImp implements GenreService{
         genre1.setCode(genre.getCode());
         genre1.setName(genre.getName());
         genre1.setStatus(genre.getStatus());
-        genre1.setUpdatedAt(LocalDateTime.now());
         return genreRepository.save(genre1) instanceof Genre;
     }
 

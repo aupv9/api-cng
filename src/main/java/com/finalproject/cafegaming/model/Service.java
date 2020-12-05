@@ -1,20 +1,15 @@
 package com.finalproject.cafegaming.model;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
 @EqualsAndHashCode(callSuper = true)
-@Data
-@Document("photo")
+@Document(collection = "service")
 @AllArgsConstructor
-@NoArgsConstructor
-public class Photo extends BaseModel{
-
-    private String url;
-    private String title;
-
+@Data
+public class Service extends BaseModel{
 }

@@ -1,4 +1,4 @@
-HELP.md
+APIDoc_User.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/

@@ -4,17 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@Document("photo")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Photo extends BaseModel{
+@Document(collection = "food")
+public class Food extends BaseModel {
 
-    private String url;
-    private String title;
-
+    private Double price = 0.d;
+    @DBRef
+    private Category category;
 }
