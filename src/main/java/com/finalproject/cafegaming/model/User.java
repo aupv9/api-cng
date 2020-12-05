@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,7 +24,7 @@ import java.util.List;
 @JsonIgnoreProperties(allowSetters = true,value = {"password","code","name"})
 public class User extends BaseModel{
 
-    @Indexed(unique = true)
+    @Indexed(unique = true,name = "username_index",direction = IndexDirection.ASCENDING)
     private String username;
 
     private String password;
@@ -34,7 +35,7 @@ public class User extends BaseModel{
     private String image;
     private String address;
 
-    @Indexed(unique = true)
+    @Indexed(unique = true,name = "email_index")
     private String email;
 
     private Boolean isActive;
