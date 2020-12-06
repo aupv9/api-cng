@@ -16,7 +16,7 @@
    **Required:**
 
    `role=[string]`
-
+    admin , partner, member
 * **Success Response:**
 
     * **Code:** 200 <br />
