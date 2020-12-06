@@ -2,7 +2,6 @@ package com.finalproject.cafegaming.controller;
 
 
 import com.finalproject.cafegaming.model.Category;
-import com.finalproject.cafegaming.model.District;
 import com.finalproject.cafegaming.service.category.CategoryService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -37,7 +36,6 @@ public class CategoryController {
         return  categoryList != null && !categoryList.isEmpty()? new ResponseEntity<>(categoryList, HttpStatus.OK):
                 new ResponseEntity<>(new ArrayList<>(),HttpStatus.NOT_FOUND);
     }
-
 
 
     @PostMapping(value = "/category",produces = "application/json")
