@@ -58,7 +58,9 @@
 * **Method:**
 
   `GET` 
-
+ * **Header param**
+    ``Authorization: token nhan duoc sau khi dang nhap``
+   
 *  **URL Params**\
    <_default value_> role = member\
    **role** <br/>
@@ -112,6 +114,8 @@
 * **Method:**
 
   `POST`\
+* **Header param**
+  ``Authorization: token nhan duoc sau khi dang nhap``
 ***Request Body <br/>
   Example***
   ```` {
@@ -178,6 +182,9 @@
 * **Method:**
 
   `PUT`\
+    * **Header param**
+      ``Authorization: token nhan duoc sau khi dang nhap``
+      
   ***Request Body <br/>
   Example***
   ```` 
@@ -221,7 +228,9 @@
 
 * **Method:**
 
-  `DELETE`\
+  `DELETE`<br />
+    * **Header param**
+  ``Authorization: token nhan duoc sau khi dang nhap``
   ***Request Body <br/>
   Example***
    
