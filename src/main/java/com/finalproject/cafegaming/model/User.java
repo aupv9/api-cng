@@ -42,7 +42,6 @@ public class User extends BaseModel{
 
     private String phone;
 
-
     @JsonIgnore
     public List<GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();

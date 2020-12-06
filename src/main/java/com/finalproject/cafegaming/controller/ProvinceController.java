@@ -53,11 +53,13 @@ public class ProvinceController {
                 new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
     }
 
+
     @PutMapping("/province")
     public ResponseEntity<?>  update(@RequestBody Province province){
         return provinceService.update(province)? new ResponseEntity<>(true,HttpStatus.OK):
                 new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
     }
+
 
     @DeleteMapping("/province/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") String id){

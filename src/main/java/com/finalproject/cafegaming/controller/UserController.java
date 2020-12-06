@@ -27,6 +27,18 @@ public class UserController {
     }
 
     @GetMapping(value = "/users", produces = "application/json")
+    public ResponseEntity<?> findAllUsers(@RequestParam(defaultValue = "0")int page,
+                                         @RequestParam(defaultValue = "10")int size
+                                        ){
+        Pageable pageable = PageRequest.of(page,size);
+        List<User> users =  userServiceImp.findAllUser(pageable);
+        return  users != null ? new ResponseEntity<>(users, HttpStatus.OK):
+                new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+    }
+
+
+
+    @GetMapping(value = "/users-role", produces = "application/json")
     public ResponseEntity<?> findAllUser(@RequestParam(defaultValue = "0")int page,
                                          @RequestParam(defaultValue = "10")int size,
                                          @RequestParam(defaultValue = "member") String role){

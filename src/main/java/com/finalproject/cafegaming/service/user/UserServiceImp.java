@@ -25,8 +25,8 @@ public class UserServiceImp implements UserService{
 
 
     @Override
-    public List<User> findAllUser() {
-        return userRepository.findAll();
+    public List<User> findAllUser(Pageable pageable) {
+        return userRepository.findAll(pageable).getContent();
     }
 
     @Override

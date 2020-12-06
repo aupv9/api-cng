@@ -1,6 +1,7 @@
 package com.finalproject.cafegaming.model;
 
 import org.springframework.data.annotation.*;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -10,6 +11,7 @@ public abstract class BaseModel {
     @Id
     protected String id;
     private String status;
+    @Indexed(unique = true)
     private String code;
     private String name;
 
@@ -25,7 +27,9 @@ public abstract class BaseModel {
     @LastModifiedDate
     private LocalDateTime lastModifiedDate;
 
-    public BaseModel(String id, String status, String code, String name, String createdBy, LocalDateTime createdDate, String lastModifiedBy, LocalDateTime lastModifiedDate) {
+    public BaseModel(String id, String status, String code, String name,
+                     String createdBy, LocalDateTime createdDate, String lastModifiedBy,
+                     LocalDateTime lastModifiedDate) {
         this.id = id;
         this.status = status;
         this.code = code;

@@ -2,9 +2,58 @@
 ----
 <_API của user_>
 
-### Get List User
+### Get List ALL User 
+**URL**\
+`http://localhost:8080/api/v1/users`
+
+* **Method:**
+
+  `GET`
+
+* **Success Response:**
+
+    * **Code:** 200 <br />
+      **Content:** \
+      ```
+      [
+        {
+          "id": "5fcbb04ca1e7be1298e10fed",
+          "status": null,
+          "createdBy": "anonymousUser",
+          "createdDate": "2020-12-05T23:07:40.903",
+          "lastModifiedBy": "anonymousUser",
+          "lastModifiedDate": "2020-12-05T23:07:40.903",
+          "username": "batman123",
+          "roles": [
+          "ROLE_ADMIN"
+          ],
+          "firstName": "jet",
+          "lastName": "lk",
+          "birthday": "2020-11-29T16:08:14.908",
+          "image": "",
+          "address": null,
+          "email": "tenten@gmail.com",
+          "isActive": null,
+          "phone": null
+         }
+      ]
+      ```
+
+* **Error Response:**
+
+    * **Code:** 401 UNAUTHORIZED <br />
+      **Content:** `UNAUTHORIZED`
+
+    * **Code:** 404 NOT FOUND <br />
+      **Content:** `False`
+
+
+
+
+
+### Get List User By Role
  **URL**\
-    `http://localhost:8080/api/v1/users?role=partner`
+    `http://localhost:8080/api/v1/users-role?role=partner`
 
 * **Method:**
 
