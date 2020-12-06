@@ -5,6 +5,15 @@ import java.util.List;
 public class ResponseLogin {
     private String token;
     private List<String> roles;
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public String getToken() {
         return token;

@@ -81,15 +81,13 @@ public class UserController {
                 :new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
     }
 
-
-
     /*
    Method login
    @param User user truyền từ client vào
    return Response
    * */
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<ResponseLogin> login(@RequestBody @Validated RequestLogin user) {
+    public ResponseEntity<ResponseLogin> authenticate(@RequestBody @Validated RequestLogin user) {
 
         ResponseLogin result = new ResponseLogin();
         HttpStatus httpStatus = null;
@@ -98,15 +96,18 @@ public class UserController {
                 result.setToken(jwtService.generateTokenLogin(user.getUsername()));
                 List<String> roles = userServiceImp.findByUsername(user.getUsername()).getRoles();
                 result.setRoles(roles);
+                result.setMessage("Login Success");
                 httpStatus = HttpStatus.OK;
             } else {
-                result.setToken("Wrong userId or password");
+                result.setMessage("Wrong user name or password");
+                result.setRoles(null);
                 httpStatus = HttpStatus.BAD_REQUEST;
             }
         } catch (Exception ex) {
-            result.setToken("Server Error");
+            result.setMessage("Server Error");
+            result.setRoles(null);
             httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
         }
-        return new ResponseEntity<ResponseLogin>(result, httpStatus);
+        return new ResponseEntity<>(result, httpStatus);
     }
 }

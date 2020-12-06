@@ -2,9 +2,9 @@
 ----
 <_API của user_>
 
-### Get List ALL User 
+### Get List ALL District
 **URL**\
-`http://localhost:8080/api/v1/users`
+`http://localhost:8080/api/v1/district`
 
 * **Method:**
 
@@ -13,30 +13,43 @@
 * **Success Response:**
 
     * **Code:** 200 <br />
-      **Content:** \
+      **Content:** 
       ```
       [
-        {
-          "id": "5fcbb04ca1e7be1298e10fed",
-          "status": null,
+          {
+          "id": "5fcc5179c8b004163cb29755",
+          "status": "active",
+          "code": "791",
+          "name": "Quan 1",
           "createdBy": "anonymousUser",
-          "createdDate": "2020-12-05T23:07:40.903",
+          "createdDate": "2020-12-06T10:35:21.092",
           "lastModifiedBy": "anonymousUser",
-          "lastModifiedDate": "2020-12-05T23:07:40.903",
-          "username": "batman123",
-          "roles": [
-          "ROLE_ADMIN"
-          ],
-          "firstName": "jet",
-          "lastName": "lk",
-          "birthday": "2020-11-29T16:08:14.908",
-          "image": "",
-          "address": null,
-          "email": "tenten@gmail.com",
-          "isActive": null,
-          "phone": null
-         }
-      ]
+          "lastModifiedDate": "2020-12-06T10:35:21.092",
+          "province": null
+          },
+          {
+          "id": "5fcc52f34bf7ff015bc5c2ea",
+          "status": "active",
+          "code": "791",
+          "name": "Quan 1",
+          "createdBy": "anonymousUser",
+          "createdDate": "2020-12-06T10:41:39.201",
+          "lastModifiedBy": "anonymousUser",
+          "lastModifiedDate": "2020-12-06T10:41:39.201",
+          "province": null
+          },
+          {
+          "id": "5fcc52f64bf7ff015bc5c2eb",
+          "status": "active",
+          "code": "791",
+          "name": "Quan 1",
+          "createdBy": "anonymousUser",
+          "createdDate": "2020-12-06T10:41:42.77",
+          "lastModifiedBy": "anonymousUser",
+          "lastModifiedDate": "2020-12-06T10:41:42.77",
+          "province": null
+          }
+       ]
       ```
 
 * **Error Response:**
@@ -52,12 +65,12 @@
 
 
 ### Get List User By Role
- **URL**\
-    `http://localhost:8080/api/v1/users-role?role=partner`
+**URL**\
+`http://localhost:8080/api/v1/users-role?role=partner`
 
 * **Method:**
 
-  `GET` 
+  `GET`
 
 *  **URL Params**\
    <_default value_> role = member\
@@ -65,11 +78,11 @@
    **Required:**
 
    `role=[string]`
-    admin , partner, member
+   admin , partner, member
 * **Success Response:**
 
     * **Code:** 200 <br />
-      **Content:** \
+      **Content:** 
       ```
       [
         {
@@ -99,13 +112,13 @@
 
     * **Code:** 401 UNAUTHORIZED <br />
       **Content:** `UNAUTHORIZED`
-   
+
     * **Code:** 404 NOT FOUND <br />
       **Content:** `False`
-      
 
 
-### Create new User 
+
+### Create new User
 
 **URL**\
 `http://localhost:8080/api/v1/user`
@@ -113,7 +126,7 @@
 * **Method:**
 
   `POST`\
-***Request Body \
+  ***Request Body \
   Example***
   ```` {
   "id": "5fcbb04ca1e7be1298e10fed",
@@ -135,7 +148,7 @@
 * **Success Response:**
 
     * **Code:** 200 <br />
-      **Content:** \
+      **Content:** 
       ```
       
         {
@@ -156,9 +169,9 @@
          }
      
       ```
-      
-* **Success Resonse** 
-  *  **Code:** 200 OK <br />
+
+* **Success Resonse**
+    *  **Code:** 200 OK <br />
        **Content:** `true`
 * **Error Response:**
 
@@ -179,7 +192,7 @@
 * **Method:**
 
   `PUT`\
-  ***Request Body \
+  ***Request Body 
   Example***
   ```` 
   {
@@ -201,7 +214,7 @@
 * **Success Response:**
 
     * **Code:** 200 <br />
-      **Content:** \
+      **Content:** 
       ```true```
 
 * **Success Resonse**
@@ -211,8 +224,8 @@
 
     * **Code:** 401 UNAUTHORIZED <br />
       **Content:** `UNAUTHORIZED`<bf/>
-      
-     * **Code:** 400 BAD REQUEST <br />
+
+    * **Code:** 400 BAD REQUEST <br />
       **Content:** `False`<bf/>
 
 ###DELETE  User
@@ -223,15 +236,15 @@
 * **Method:**
 
   `DELETE`\
-  ***Request Body \
+  ***Request Body 
   Example***
-   
+
 `http://localhost:8080/api/v1/user/2312312312sdasdasd`
 
 * **Success Response:**
 
     * **Code:** 200 <br />
-      **Content:** \
+      **Content:** 
       ```true```
 
 * **Success Resonse**
@@ -255,7 +268,7 @@
 * **Method:**
 
   `POST`\
-  ***Request Body \
+  ***Request Body 
   Example***
 
 `http://localhost:8080/api/v1/user/authenticate`
@@ -263,7 +276,7 @@
 * **Success Response:**
 
     * **Code:** 200 <br />
-      **Content:** \
+      **Content:** 
       ```
       {
           "token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDgwOTE1MTMsInVzZXJuYW1lIjoiYmF0bWFuMTIzIn0.BAU3I_RwkiYuM9DWIzZ-dkphe5_EvFzd4qj-hJ4aUVg",
@@ -273,13 +286,13 @@
           "message": "Login Success"
       }
       ```
-    **token** dung de gui kem request de authortiry
+  **token** dung de gui kem request de authortiry
 
 * **Error Response:**
 
     * **Code:** 400 BAD REQUEST <br />
       **Content:** `
-          
+
         ````
         {
              "token": null,
@@ -289,7 +302,7 @@
     
         ````
 
-    `<bf/>
+  `<bf/>
   ***Exception**
     * **Code:** 500 Internal Server Error <br />
       **Content:**
