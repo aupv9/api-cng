@@ -7,5 +7,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface DistrictRepository extends MongoRepository<District,String> {
 
-    Page<District> findAllByProvinceCode(String code,Pageable pageable);
+    Page<District> findAllByProvinceId(String code,Pageable pageable);
 }

@@ -64,21 +64,20 @@
 
 
 
-### Get List User By Role
+### Get List User By Province
 **URL**\
-`http://localhost:8080/api/v1/users-role?role=partner`
+`http://localhost:8080/api/v1/district-province`
 
 * **Method:**
 
   `GET`
 
-*  **URL Params**\
-   <_default value_> role = member\
-   **role** \
+*  **URL Params**<br/>
+   * **province** <br/>
    **Required:**
 
-   `role=[string]`
-   admin , partner, member
+   `province=[string]`
+   "98", "79"
 * **Success Response:**
 
     * **Code:** 200 <br />
@@ -186,12 +185,12 @@
 
 ###UPDATE  User
 
-**URL**\
+**URL**
 `http://localhost:8080/api/v1/user`
 
 * **Method:**
 
-  `PUT`\
+  `PUT`<br/>
   ***Request Body 
   Example***
   ```` 

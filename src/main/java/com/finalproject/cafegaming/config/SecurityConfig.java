@@ -5,6 +5,7 @@ import com.finalproject.cafegaming.filter.JwtAuthenticationTokenFilter;
 import com.finalproject.cafegaming.filter.RestAuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -46,7 +47,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.csrf().disable();
-        http.authorizeRequests().antMatchers("/api/v1/login").permitAll();
+
+        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/v1/authenticate","/api/v1/user").permitAll();
+        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/v1/booths").permitAll();
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/v1/user").permitAll();
+
+        http.authorizeRequests().antMatchers("/api/v1/users","/api/v1/provinces","/api/v1/districts")
+                .access("hasRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/api/v1/**")
+                .access("hasRole('ROLE_ADMIN') or hasAnyRole('ROLE_PARTNER')" );
+
+
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.antMatcher("/api/v1/**").httpBasic().authenticationEntryPoint(restServicesEntryPoint());
+
+
         http.cors().configurationSource(request -> {
             CorsConfiguration cors = new CorsConfiguration();
             cors.setAllowedOrigins(Collections.singletonList("*"));
@@ -54,14 +69,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             cors.setAllowedHeaders(Collections.singletonList("*"));
             return cors;
         });
-        http.antMatcher("/api/v1/**").httpBasic().authenticationEntryPoint(restServicesEntryPoint());
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
-       // http.authorizeRequests().antMatchers( "/api/v1/*").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')");
-
-//        http.authorizeRequests().antMatchers( "/api/v1/*").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')");
-
-
         /*
          * add filter thỏa điều kiện rồi mới vào Controller
          */

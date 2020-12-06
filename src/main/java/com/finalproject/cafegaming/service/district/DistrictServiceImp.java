@@ -28,7 +28,7 @@ public class DistrictServiceImp implements DistrictService{
 
     @Override
     public List<District> findAllByProvinceCode(String code, Pageable pageable) {
-        return districtRepository.findAllByProvinceCode(code,pageable).getContent();
+        return districtRepository.findAllByProvinceId(code,pageable).getContent();
     }
 
     @Override

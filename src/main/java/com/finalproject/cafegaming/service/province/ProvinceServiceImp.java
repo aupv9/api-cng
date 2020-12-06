@@ -1,4 +1,4 @@
-package com.finalproject.cafegaming.service.province;
+ package com.finalproject.cafegaming.service.province;
 
 import com.finalproject.cafegaming.dao.ProvinceRepository;
 import com.finalproject.cafegaming.exception.ResourceException;
@@ -31,9 +31,10 @@ public class ProvinceServiceImp implements ProvinceService{
     @Override
     public Boolean update(Province province) {
         Province province1=findById(province.getId());
-        province.setCode(province.getCode());
-        province.setName(province.getName());
-        province.setStatus(province.getStatus());
+            province1.setCode(province.getCode());
+            province1.setName(province.getName());
+            province1.setStatus(province.getStatus());
+            province1.setDistricts(province.getDistricts());
         return save(province1);
     }
 
@@ -41,7 +42,7 @@ public class ProvinceServiceImp implements ProvinceService{
     public Boolean delete(String province) {
         Province province1=findById(province);
         province1.setStatus("Not");
-        return true;
+        return update(province1);
     }
 
     @Override

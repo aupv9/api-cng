@@ -3,12 +3,12 @@
 <_API của user_>
 
 ### Get List ALL User 
-**URL**\
+**URL**
 `http://localhost:8080/api/v1/users`
 
 * **Method:**
 
-  `GET`
+  `GET`__
 
 * **Success Response:**
 
@@ -52,7 +52,7 @@
 
 
 ### Get List User By Role
- **URL**\
+ **URL**
     `http://localhost:8080/api/v1/users-role?role=partner`
 
 * **Method:**
@@ -61,15 +61,14 @@
 
 *  **URL Params**\
    <_default value_> role = member\
-   **role** \
+   **role** <br/>
    **Required:**
-
    `role=[string]`
     admin , partner, member
 * **Success Response:**
 
     * **Code:** 200 <br />
-      **Content:** \
+      **Content:** 
       ```
       [
         {
@@ -113,7 +112,7 @@
 * **Method:**
 
   `POST`\
-***Request Body \
+***Request Body <br/>
   Example***
   ```` {
   "id": "5fcbb04ca1e7be1298e10fed",
@@ -135,7 +134,7 @@
 * **Success Response:**
 
     * **Code:** 200 <br />
-      **Content:** \
+      **Content:** 
       ```
       
         {
@@ -173,13 +172,13 @@
 
 ###UPDATE  User
 
-**URL**\
+**URL**
 `http://localhost:8080/api/v1/user`
 
 * **Method:**
 
   `PUT`\
-  ***Request Body \
+  ***Request Body <br/>
   Example***
   ```` 
   {
@@ -201,7 +200,7 @@
 * **Success Response:**
 
     * **Code:** 200 <br />
-      **Content:** \
+      **Content:** 
       ```true```
 
 * **Success Resonse**
@@ -217,13 +216,13 @@
 
 ###DELETE  User
 
-**URL**\
+**URL**
 `http://localhost:8080/api/v1/user/{id}`
 
 * **Method:**
 
   `DELETE`\
-  ***Request Body \
+  ***Request Body <br/>
   Example***
    
 `http://localhost:8080/api/v1/user/2312312312sdasdasd`
@@ -231,7 +230,7 @@
 * **Success Response:**
 
     * **Code:** 200 <br />
-      **Content:** \
+      **Content:** 
       ```true```
 
 * **Success Resonse**
@@ -249,13 +248,13 @@
 
 ###LOGIN  User
 
-**URL**\
+**URL**
 `http://localhost:8080/api/v1/user/authenticate`
 
 * **Method:**
 
-  `POST`\
-  ***Request Body \
+  `POST`<br/>
+  ***Request Body 
   Example***
 
 `http://localhost:8080/api/v1/user/authenticate`
@@ -263,7 +262,7 @@
 * **Success Response:**
 
     * **Code:** 200 <br />
-      **Content:** \
+      **Content:** 
       ```
       {
           "token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDgwOTE1MTMsInVzZXJuYW1lIjoiYmF0bWFuMTIzIn0.BAU3I_RwkiYuM9DWIzZ-dkphe5_EvFzd4qj-hJ4aUVg",

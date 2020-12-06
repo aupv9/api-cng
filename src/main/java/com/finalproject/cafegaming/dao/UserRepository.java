@@ -11,4 +11,7 @@ public interface UserRepository extends MongoRepository<User, String> {
     Boolean existsUserByUsername(String username);
     User findByUsername(String username);
     Page<User> findAllByRolesContaining(Pageable pageable, String role);
+    Page<User> findAllByStatus(String s,Pageable pageable);
+    Page<User> findAllByIsActive(Boolean aBoolean,Pageable pageable);
+
 }

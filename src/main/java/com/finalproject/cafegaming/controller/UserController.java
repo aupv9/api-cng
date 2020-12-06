@@ -36,6 +36,27 @@ public class UserController {
                 new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping(value = "/users-status", produces = "application/json")
+    public ResponseEntity<?> findAllUsersByStatus(@RequestParam(defaultValue = "0")int page,
+                                          @RequestParam(defaultValue = "10")int size,
+                                                  @RequestParam(defaultValue = "Active") String status
+    ){
+        Pageable pageable = PageRequest.of(page,size);
+        List<User> users =  userServiceImp.findAllUserByStatus(status,pageable);
+        return  users != null && !users.isEmpty() ? new ResponseEntity<>(users, HttpStatus.OK):
+                new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping(value = "/users-active", produces = "application/json")
+    public ResponseEntity<?> findAllUsersByActive(@RequestParam(defaultValue = "0")int page,
+                                          @RequestParam(defaultValue = "10")int size,
+                                                  @RequestParam(defaultValue = "true") boolean active
+    ){
+        Pageable pageable = PageRequest.of(page,size);
+        List<User> users =  userServiceImp.findAllUserByActive(active,pageable);
+        return  users != null && !users.isEmpty() ? new ResponseEntity<>(users, HttpStatus.OK):
+                new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+    }
 
 
     @GetMapping(value = "/users-role", produces = "application/json")
@@ -57,7 +78,7 @@ public class UserController {
 
 
     @PostMapping(value = "/user")
-    public ResponseEntity<?> insertUser(@RequestBody @Validated User user){
+    public ResponseEntity<?> insertUser( @RequestBody @Validated(value = User.class) User user){
         if(userServiceImp.exitUserByUsername(user.getUsername())){
             return new ResponseEntity<>("Username is already",HttpStatus.BAD_REQUEST);
         }
@@ -69,8 +90,15 @@ public class UserController {
 
     }
 
+    @PutMapping("/user-profile")
+    public ResponseEntity<?> updateUserProfile(@RequestBody @Validated(value = User.class)  User user){
+        return userServiceImp.updateUser(user) ? new ResponseEntity<>(true,HttpStatus.OK)
+                :new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
+    }
+
+
     @PutMapping("/user")
-    public ResponseEntity<?> updateUser(@RequestBody User user){
+    public ResponseEntity<?> updateUser(@RequestBody @Validated(value = User.class) User user){
         return userServiceImp.updateUser(user) ? new ResponseEntity<>(true,HttpStatus.OK)
                 :new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
     }

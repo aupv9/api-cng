@@ -1,18 +1,21 @@
 package com.finalproject.cafegaming.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,13 +34,18 @@ public class User extends BaseModel{
     private List<String> roles;
     private String firstName;
     private String lastName;
-    private LocalDateTime birthday;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @JsonFormat(timezone = "dd-mm-yyyy")
+    private LocalDate birthday;
+
     private String image;
     private String address;
 
     @Indexed(unique = true,name = "email_index")
     private String email;
 
+    @NotNull
     private Boolean isActive;
 
     private String phone;

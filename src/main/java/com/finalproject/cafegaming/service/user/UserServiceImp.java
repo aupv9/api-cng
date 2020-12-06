@@ -30,6 +30,16 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
+    public List<User> findAllUserByStatus(String s, Pageable pageable) {
+        return userRepository.findAllByStatus(s,pageable).toList();
+    }
+
+    @Override
+    public List<User> findAllUserByActive(boolean b, Pageable pageable) {
+        return userRepository.findAllByIsActive(b,pageable).toList();
+    }
+
+    @Override
     public User findUserById(String id) {
         return userRepository.findById(id).orElseThrow(ResourceException::new);
     }
@@ -110,6 +120,25 @@ public class UserServiceImp implements UserService{
                 break;
         }
         return userRepository.findAllByRolesContaining(pageable,roleQuery.toString()).getContent();
+    }
+
+    @Override
+    public Boolean updateProfile(User user) {
+        User user1 = findUserById(user.getUsername());
+        if(passwordEncoder.matches(user.getPassword(),user1.getPassword())){
+            user1.setFirstName(user.getFirstName());
+            user1.setLastName(user.getLastName());
+            user1.setAddress(user.getAddress());
+            user1.setEmail(user.getEmail());
+            user1.setBirthday(user.getBirthday());
+            user1.setPhone(user.getPhone());
+            user1.setImage(user.getImage());
+            userRepository.save(user1);
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 

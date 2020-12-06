@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface UserService {
     List<User> findAllUser(Pageable pageable);
+    List<User> findAllUserByStatus(String s,Pageable pageable);
+    List<User> findAllUserByActive(boolean b,Pageable pageable);
     User findUserById(String id);
     Boolean insertUser(User user);
     Boolean updateUser(User user);
@@ -18,5 +20,6 @@ public interface UserService {
     User findByUsername(String username);
     Boolean checkLogin(RequestLogin user);
     List<User> findAllByRole(Pageable pageable,String role);
+    Boolean updateProfile(User user);
 
 }

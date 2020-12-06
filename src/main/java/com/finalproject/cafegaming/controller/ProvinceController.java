@@ -1,7 +1,5 @@
 package com.finalproject.cafegaming.controller;
 
-
-import com.finalproject.cafegaming.model.Booth;
 import com.finalproject.cafegaming.model.Province;
 import com.finalproject.cafegaming.service.province.ProvinceService;
 import org.springframework.data.domain.PageRequest;

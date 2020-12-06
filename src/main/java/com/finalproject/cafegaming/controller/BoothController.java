@@ -56,13 +56,6 @@ public class BoothController {
                 new ResponseEntity<>(new Booth(),HttpStatus.NOT_FOUND);
     }
 
-//    @GetMapping(value = "/booths/{district}",produces = "application/json")
-//    public ResponseEntity<List<Booth>> getBoothByDistrict(@PathVariable("district")String dictrict){
-//        List<Booth> booths =  boothService.findByDistrict(dictrict);
-//        return  booths != null ? new ResponseEntity<>(booths, HttpStatus.OK):
-//                new ResponseEntity<>(new ArrayList<>(),HttpStatus.NOT_FOUND);
-//    }
-
 
 
     @PostMapping(value = "/booth",produces = "application/json")
