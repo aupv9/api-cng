@@ -1,6 +1,5 @@
 package com.finalproject.cafegaming.service.photo;
 
-import com.finalproject.cafegaming.model.Genre;
 import com.finalproject.cafegaming.model.Photo;
 import org.springframework.data.domain.Pageable;
 
@@ -12,4 +11,5 @@ public interface PhotoService {
     Boolean update(Photo genre);
     Boolean delete(String id);
     Photo findById(String s);
+    String sendPhotoToCloud();
 }

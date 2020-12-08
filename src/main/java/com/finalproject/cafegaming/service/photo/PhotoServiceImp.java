@@ -50,4 +50,9 @@ public class PhotoServiceImp implements PhotoService{
     public Photo findById(String s) {
         return photoRepository.findById(s).orElseThrow(ResourceException::new);
     }
+
+    @Override
+    public String sendPhotoToCloud() {
+        return null;
+    }
 }
