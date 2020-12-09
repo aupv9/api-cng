@@ -4,6 +4,9 @@ import com.finalproject.cafegaming.model.Promotion;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+/**
+ * @author AuPhan
+ */
 
 public interface PromotionService {
     List<Promotion> findAll(Pageable pageable);

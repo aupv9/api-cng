@@ -5,6 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+/**
+ * @author AuPhan
+ */
 
 public interface UserRepository extends MongoRepository<User, String> {
     Boolean existsUserByEmail(String email);

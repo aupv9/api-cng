@@ -12,6 +12,9 @@ import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jose.crypto.MACVerifier;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
+/**
+ * @author AuPhan
+ */
 
 @Service("jwtService")
 public class JwtService {

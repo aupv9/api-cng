@@ -1,6 +1,9 @@
 package com.finalproject.cafegaming.payload;
 
 import java.util.List;
+/**
+ * @author AuPhan
+ */
 
 public class ResponseLogin {
     private String token;

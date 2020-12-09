@@ -6,6 +6,9 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+/**
+ * @author AuPhan
+ */
 
 @EqualsAndHashCode(callSuper = true)
 @Document(collection = "district")

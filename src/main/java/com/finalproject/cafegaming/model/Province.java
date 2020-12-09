@@ -10,6 +10,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Set;
 
+/**
+ * @author AuPhan
+ */
 
 @EqualsAndHashCode(callSuper = true)
 @Document("province")

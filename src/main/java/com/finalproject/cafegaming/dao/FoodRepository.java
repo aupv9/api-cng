@@ -4,6 +4,9 @@ import com.finalproject.cafegaming.model.Food;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
+/**
+ * @author AuPhan
+ */
 
 public interface FoodRepository extends MongoRepository<Food,String> {
 

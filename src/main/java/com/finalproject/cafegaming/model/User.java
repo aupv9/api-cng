@@ -18,6 +18,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+/**
+ * @author AuPhan
+ */
 
 @EqualsAndHashCode(callSuper = true)
 @Document(collection = "user")

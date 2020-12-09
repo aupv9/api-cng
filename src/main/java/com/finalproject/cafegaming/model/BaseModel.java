@@ -5,6 +5,9 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+/**
+ * @author AuPhan
+ */
 
 @Document
 public abstract class BaseModel {

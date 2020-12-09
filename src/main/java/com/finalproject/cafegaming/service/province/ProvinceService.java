@@ -5,6 +5,9 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
+/**
+ * @author AuPhan
+ */
 
 public interface ProvinceService {
     List<Province> findAll(Pageable page);
