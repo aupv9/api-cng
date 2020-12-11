@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 /**
  * @author AuPhan
@@ -18,8 +19,6 @@ import java.util.Set;
 @Document("category")
 @NoArgsConstructor
 public class Category extends BaseModel{
-
-
     @DBRef
     private Set<Food> foods;
 }
