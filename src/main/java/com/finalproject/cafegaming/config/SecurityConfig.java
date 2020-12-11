@@ -22,8 +22,6 @@ import java.util.Collections;
  * @author AuPhan
  */
 
-
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -54,6 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.csrf().disable();
+
 
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/v1/authenticate","/api/v1/user").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/v1/booths").permitAll();

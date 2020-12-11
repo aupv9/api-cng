@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 /**
  * @author AuPhan
@@ -16,6 +17,9 @@ import java.util.Set;
 @AllArgsConstructor
 @Document("category")
 public class Category extends BaseModel{
+
+    public Category() {
+    }
 
     @DBRef
     private Set<Food> foods;
