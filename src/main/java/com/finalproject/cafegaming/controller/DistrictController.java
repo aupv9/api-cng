@@ -53,6 +53,18 @@ public class DistrictController {
     }
 
 
+    @GetMapping(value = "/district",produces = "application/json")
+    public ResponseEntity<District> getDistrict(@RequestParam String id){
+
+
+        District district = districtService.findById(id);
+
+        return  district != null ? new ResponseEntity<>(district, HttpStatus.OK):
+                new ResponseEntity<>(new District(),HttpStatus.NOT_FOUND);
+    }
+
+
+
 
     @PostMapping(value = "/district",produces = "application/json")
     public ResponseEntity<?> saveDistrict(@RequestBody @Validated District district){

@@ -42,6 +42,19 @@ public class ServiceController {
                 new ResponseEntity<>(new ArrayList<>(),HttpStatus.NOT_FOUND);
     }
 
+
+    @GetMapping(value = "/service",produces = "application/json")
+    public ResponseEntity<Service> findById(@RequestParam String id
+    ){
+
+        Service service = serviceService.findById(id);
+
+        return  service != null? new ResponseEntity<>(service, HttpStatus.OK):
+                new ResponseEntity<>(new Service(),HttpStatus.NOT_FOUND);
+    }
+
+
+
     @PostMapping(value = "/service",produces = "application/json")
     public ResponseEntity<?> save(@RequestBody @Validated Service service){
         return  serviceService.save(service) != null ? new ResponseEntity<>(true, HttpStatus.OK):

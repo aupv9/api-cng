@@ -43,6 +43,17 @@ public class CommentController {
                 new ResponseEntity<>(new ArrayList<>(),HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping(value = "/comment",produces = "application/json")
+    public ResponseEntity<Comment> findById(@RequestParam String id){
+
+        Comment comments = commentService.findById(id);
+
+        return  comments != null ? new ResponseEntity<>(comments, HttpStatus.OK):
+                new ResponseEntity<>(new Comment(),HttpStatus.NOT_FOUND);
+    }
+
+
+
     @PostMapping(value = "/comments",produces = "application/json")
     public ResponseEntity<?> save(@RequestBody @Validated Comment comment){
         return  commentService.save(comment) != null ? new ResponseEntity<>(true, HttpStatus.OK):

@@ -39,6 +39,17 @@ public class FoodController {
                 new ResponseEntity<>(new ArrayList<>(),HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping(value = "/food",produces = "application/json")
+    public ResponseEntity<Food> getFoods(@RequestParam String id
+    ){
+        Food food = foodService.findById(id);
+
+        return  food != null? new ResponseEntity<>(food, HttpStatus.OK):
+                new ResponseEntity<>(new Food(),HttpStatus.NOT_FOUND);
+    }
+
+
+
 
     @PostMapping(value = "/food",produces = "application/json")
     public ResponseEntity<?> save(@RequestBody @Validated Food food){

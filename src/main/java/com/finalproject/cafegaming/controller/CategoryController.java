@@ -40,6 +40,14 @@ public class CategoryController {
                 new ResponseEntity<>(new ArrayList<>(),HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping(value = "/category",produces = "application/json")
+    public ResponseEntity<Category> getCategory(@RequestParam String id){
+        Category category = categoryService.findById(id);
+
+        return  category != null ? new ResponseEntity<>(category, HttpStatus.OK):
+                new ResponseEntity<>(new Category(),HttpStatus.NOT_FOUND);
+    }
+
 
     @PostMapping(value = "/category",produces = "application/json")
     public ResponseEntity<?> save(@RequestBody @Validated Category category){

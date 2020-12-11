@@ -39,6 +39,15 @@ public class PhotoController {
                 new ResponseEntity<>(new ArrayList<>(),HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping(value = "/photo",produces = "application/json")
+    public ResponseEntity<Photo> getPhoto(@RequestParam String id
+    ){
+       Photo photo = photoService.findById(id);
+
+        return  photo != null ? new ResponseEntity<>(photo, HttpStatus.OK):
+                new ResponseEntity<>(new Photo(),HttpStatus.NOT_FOUND);
+    }
+
 
     @PostMapping(value = "/photo",produces = "application/json")
     public ResponseEntity<?> save(@RequestBody @Validated Photo photo){

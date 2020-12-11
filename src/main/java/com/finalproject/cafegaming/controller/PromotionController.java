@@ -42,6 +42,17 @@ public class PromotionController {
                 new ResponseEntity<>(new ArrayList<>(),HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping(value = "/promotion",produces = "application/json")
+    public ResponseEntity<Promotion> findById(@RequestParam String id
+    ){
+
+        Promotion promotion = promotionService.findById(id);
+
+        return  promotion != null ? new ResponseEntity<>(promotion, HttpStatus.OK):
+                new ResponseEntity<>(new Promotion(),HttpStatus.NOT_FOUND);
+    }
+
+
     @PostMapping(value = "/promotion",produces = "application/json")
     public ResponseEntity<?> save(@RequestBody @Validated Promotion promotion){
         return  promotionService.save(promotion) != null ? new ResponseEntity<>(true, HttpStatus.OK):
