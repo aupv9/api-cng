@@ -1,11 +1,13 @@
 package com.finalproject.cafegaming.service.photo;
 
+import com.finalproject.cafegaming.config.GoogleDriveConfig;
 import com.finalproject.cafegaming.dao.PhotoRepository;
 import com.finalproject.cafegaming.exception.ResourceException;
 import com.finalproject.cafegaming.model.Photo;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 /**
  * @author AuPhan
@@ -16,9 +18,10 @@ public class PhotoServiceImp implements PhotoService{
 
 
     final PhotoRepository photoRepository;
-
-    public PhotoServiceImp(PhotoRepository photoRepository) {
+    final GoogleDriveConfig googleDriveConfig;
+    public PhotoServiceImp(PhotoRepository photoRepository, GoogleDriveConfig googleDriveConfig) {
         this.photoRepository = photoRepository;
+        this.googleDriveConfig = googleDriveConfig;
     }
 
     @Override
@@ -55,7 +58,9 @@ public class PhotoServiceImp implements PhotoService{
     }
 
     @Override
-    public String sendPhotoToCloud() {
-        return null;
+    public Photo sendPhotoToCloud(byte[] file) throws IOException {
+        return googleDriveConfig.uploadImage(file);
     }
+
+
 }

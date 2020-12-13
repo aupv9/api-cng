@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -47,6 +48,14 @@ public class PhotoController {
         return  photo != null ? new ResponseEntity<>(photo, HttpStatus.OK):
                 new ResponseEntity<>(new Photo(),HttpStatus.NOT_FOUND);
     }
+
+    @PostMapping(value = "/photo",produces = "application/json")
+    public ResponseEntity<?> saveImage(@RequestParam byte[] image) throws IOException {
+        Photo photo = photoService.sendPhotoToCloud(image);
+        return  photo != null ? new ResponseEntity<>(photo, HttpStatus.OK):
+                new ResponseEntity<>(false,HttpStatus.NOT_FOUND);
+    }
+
 
 
     @PostMapping(value = "/photo",produces = "application/json")
