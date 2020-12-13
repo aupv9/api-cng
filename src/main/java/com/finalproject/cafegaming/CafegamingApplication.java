@@ -26,4 +26,6 @@ public class CafegamingApplication {
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
+
 }

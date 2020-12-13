@@ -49,7 +49,7 @@ public class PhotoController {
                 new ResponseEntity<>(new Photo(),HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping(value = "/photo",produces = "application/json")
+    @PostMapping(value = "/photo-cloud",produces = "application/json")
     public ResponseEntity<?> saveImage(@RequestParam byte[] image) throws IOException {
         Photo photo = photoService.sendPhotoToCloud(image);
         return  photo != null ? new ResponseEntity<>(photo, HttpStatus.OK):

@@ -13,22 +13,22 @@ import java.time.LocalDateTime;
 public abstract class BaseModel {
     @Id
     protected String id;
-    private String status;
+    protected String status;
     @Indexed(unique = true)
-    private String code;
-    private String name;
+    protected String code;
+    protected String name;
 
     @CreatedBy
-    private String createdBy;
+    protected String createdBy;
 
     @CreatedDate
-    private LocalDateTime createdDate;
+    protected LocalDateTime createdDate;
 
     @LastModifiedBy
-    private String lastModifiedBy;
+    protected String lastModifiedBy;
 
     @LastModifiedDate
-    private LocalDateTime lastModifiedDate;
+    protected LocalDateTime lastModifiedDate;
 
     public BaseModel(String id, String status, String code, String name,
                      String createdBy, LocalDateTime createdDate, String lastModifiedBy,

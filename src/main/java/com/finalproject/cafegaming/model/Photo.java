@@ -19,6 +19,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Photo extends BaseModel{
 
     private String url;
+    private String download;
     private String title;
     @DBRef
     private Booth booth;

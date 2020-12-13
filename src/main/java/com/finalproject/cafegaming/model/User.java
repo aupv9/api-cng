@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -48,7 +47,6 @@ public class User extends BaseModel{
     @Indexed(unique = true,name = "email_index")
     private String email;
 
-    @NotNull
     private Boolean isActive;
 
     private String phone;

@@ -59,7 +59,7 @@ public class PhotoServiceImp implements PhotoService{
 
     @Override
     public Photo sendPhotoToCloud(byte[] file) throws IOException {
-        return googleDriveConfig.uploadImage(file);
+       return googleDriveConfig.uploadImage(file);
     }
 
 
