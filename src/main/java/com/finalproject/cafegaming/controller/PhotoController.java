@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -49,14 +50,14 @@ public class PhotoController {
                 new ResponseEntity<>(new Photo(),HttpStatus.NOT_FOUND);
     }
 
+
     @PostMapping(value = "/photo-cloud",produces = "application/json")
-    public ResponseEntity<?> saveImage(@RequestParam byte[] image) throws IOException {
+    public ResponseEntity<?> saveImage(@RequestParam("file") MultipartFile file) throws IOException {
+        byte[] image = file.getBytes();
         Photo photo = photoService.sendPhotoToCloud(image);
         return  photo != null ? new ResponseEntity<>(photo, HttpStatus.OK):
                 new ResponseEntity<>(false,HttpStatus.NOT_FOUND);
     }
-
-
 
     @PostMapping(value = "/photo",produces = "application/json")
     public ResponseEntity<?> save(@RequestBody @Validated Photo photo){
