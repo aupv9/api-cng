@@ -3,6 +3,7 @@ package com.finalproject.cafegaming.controller;
 
 import com.finalproject.cafegaming.model.Photo;
 import com.finalproject.cafegaming.service.photo.PhotoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,7 @@ import java.util.List;
 @RequestMapping("/api/v1")
 public class PhotoController {
 
+    @Autowired
     final PhotoService photoService;
 
     public PhotoController(PhotoService photoService) {
@@ -52,7 +54,7 @@ public class PhotoController {
 
 
     @PostMapping(value = "/photo-cloud",produces = "application/json")
-    public ResponseEntity<?> saveImage(@RequestParam("file") MultipartFile file) throws IOException {
+    public ResponseEntity<?> saveImage(MultipartFile file) throws IOException {
         byte[] image = file.getBytes();
         Photo photo = photoService.sendPhotoToCloud(image);
         return  photo != null ? new ResponseEntity<>(photo, HttpStatus.OK):
