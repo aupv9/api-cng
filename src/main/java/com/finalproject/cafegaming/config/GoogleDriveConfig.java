@@ -92,7 +92,7 @@ public class GoogleDriveConfig {
 
     public Photo uploadImage(byte[] imageBytes) throws IOException {
         Drive driveService = getDriveService();
-        AbstractInputStreamContent uploadStreamContent = new ByteArrayContent("image/jpeg", imageBytes);
+        AbstractInputStreamContent uploadStreamContent = new ByteArrayContent("image/jpeg, image/png", imageBytes);
         File fileMetadata = new File();
         fileMetadata.setName("image.jpg");
         File googleFile = driveService.files().create(fileMetadata, uploadStreamContent)
@@ -112,7 +112,7 @@ public class GoogleDriveConfig {
         newPermission.setType(permissionType);
         newPermission.setRole(permissionRole);
         driveService.permissions().create(googleFile.getId(),newPermission).execute();
-        return new Photo("https://drive.google.com/uc?id='" + googleFile.getId() + "'",googleFile.getWebContentLink(),"image",null);
+        return new Photo("https://drive.google.com/uc?id='" + googleFile.getId() + "'",googleFile.getWebContentLink(),"image",null,null);
     }
 
 

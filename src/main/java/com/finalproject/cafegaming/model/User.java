@@ -41,7 +41,7 @@ public class User extends BaseModel{
     @JsonFormat(timezone = "dd-mm-yyyy")
     private LocalDate birthday;
 
-    private String image;
+    private Photo image;
     private String address;
 
     @Indexed(unique = true,name = "email_index")

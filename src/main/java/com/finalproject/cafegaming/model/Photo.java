@@ -21,6 +21,7 @@ public class Photo extends BaseModel{
     private String url;
     private String download;
     private String title;
+    private byte[] value;
     @DBRef
     private Booth booth;
 }

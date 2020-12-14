@@ -4,6 +4,7 @@ import com.finalproject.cafegaming.model.User;
 import com.finalproject.cafegaming.payload.RequestLogin;
 import org.springframework.data.domain.Pageable;
 
+import java.io.IOException;
 import java.util.List;
 /**
  * @author AuPhan
@@ -15,7 +16,7 @@ public interface UserService {
     List<User> findAllUserByActive(boolean b,Pageable pageable);
     User findUserById(String id);
     Boolean insertUser(User user);
-    Boolean updateUser(User user);
+    Boolean updateUser(User user) throws IOException;
     Boolean delUser(String id);
     Boolean exitUserByEmail(String email);
     Boolean exitUserByUsername(String username);

@@ -1,5 +1,6 @@
 package com.finalproject.cafegaming.service.user;
 
+import com.finalproject.cafegaming.config.GoogleDriveConfig;
 import com.finalproject.cafegaming.dao.UserRepository;
 import com.finalproject.cafegaming.exception.ResourceException;
 import com.finalproject.cafegaming.model.User;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 /**
@@ -20,9 +22,11 @@ import java.util.List;
 public class UserServiceImp implements UserService{
 
     private final UserRepository userRepository;
+    final GoogleDriveConfig googleDriveConfig;
     final PasswordEncoder passwordEncoder;
-    public UserServiceImp(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserServiceImp(UserRepository userRepository, GoogleDriveConfig googleDriveConfig, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.googleDriveConfig = googleDriveConfig;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -63,13 +67,13 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public Boolean updateUser(User user) {
+    public Boolean updateUser(User user) throws IOException {
         User user1 =findUserById(user.getId());
         user1.setFirstName(user.getFirstName());
         user1.setLastName(user.getLastName());
-        user1.setPassword(passwordEncoder.encode(user.getPassword()));
         user1.setBirthday(user.getBirthday());
         user1.setEmail(user.getEmail());
+        googleDriveConfig.uploadImage(user1.getImage().getValue());
         user1.setImage(user.getImage());
         user1.setRoles(user.getRoles());
         return userRepository.save(user1) instanceof User;

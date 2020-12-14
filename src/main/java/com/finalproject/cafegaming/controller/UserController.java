@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -103,7 +104,7 @@ public class UserController {
 
 
     @PutMapping("/user")
-    public ResponseEntity<?> updateUser(@RequestBody @Validated(value = User.class) User user){
+    public ResponseEntity<?> updateUser(@RequestBody @Validated(value = User.class) User user) throws IOException {
         return userServiceImp.updateUser(user) ? new ResponseEntity<>(true,HttpStatus.OK)
                 :new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
     }
