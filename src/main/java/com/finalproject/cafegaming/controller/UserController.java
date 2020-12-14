@@ -96,11 +96,11 @@ public class UserController {
 
     }
 
-    @PutMapping("/user-profile")
-    public ResponseEntity<?> updateUserProfile(@RequestBody @Validated(value = User.class)  User user){
-        return userServiceImp.updateUser(user) ? new ResponseEntity<>(true,HttpStatus.OK)
-                :new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
-    }
+//    @PutMapping("/user-profile")
+//    public ResponseEntity<?> updateUserProfile(@RequestBody @Validated(value = User.class)  User user) throws IOException {
+//        return userServiceImp.(user) ? new ResponseEntity<>(true,HttpStatus.OK)
+//                :new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
+//    }
 
 
     @PutMapping("/user")

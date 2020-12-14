@@ -68,7 +68,7 @@ public class UserServiceImp implements UserService{
 
     @Override
     public Boolean updateUser(User user) throws IOException {
-        User user1 =findUserById(user.getId());
+        User user1 = findUserById(user.getId());
         user1.setFirstName(user.getFirstName());
         user1.setLastName(user.getLastName());
         user1.setBirthday(user.getBirthday());
