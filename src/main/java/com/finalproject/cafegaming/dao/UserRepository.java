@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 public interface UserRepository extends MongoRepository<User, String> {
     Boolean existsUserByEmail(String email);
     Boolean existsUserByUsername(String username);
-    User findByUsername(String username);
+    User findUserByUsername(String username);
     Page<User> findAllByRolesContaining(Pageable pageable, String role);
     Page<User> findAllByStatus(String s,Pageable pageable);
     Page<User> findAllByIsActive(Boolean aBoolean,Pageable pageable);
